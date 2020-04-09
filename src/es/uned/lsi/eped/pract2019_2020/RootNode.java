@@ -4,7 +4,7 @@ import es.uned.lsi.eped.DataStructures.GTreeIF;
 import es.uned.lsi.eped.DataStructures.List;
 
 public class RootNode extends Node {
-    private List<WordNode> wordNodes;
+    private final List<WordNode> wordNodes;
 
     public RootNode() {
         this.wordNodes = new List<WordNode>();

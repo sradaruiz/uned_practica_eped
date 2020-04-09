@@ -1,19 +1,21 @@
 package es.uned.lsi.eped.pract2019_2020;
 
-public class LetterNode extends Node {
-    private char letter;
-    private LetterNode nextLetter;
+import es.uned.lsi.eped.DataStructures.List;
 
-    @Override
-    public NodeType getNodeType() {
-        return NodeType.LETTERNODE;
+public class LetterNode extends Node {
+    private final char letter;
+    private List<Node> nextNodes;
+
+    public LetterNode(char character) {
+        letter = character;
     }
 
     public char getLetter() {
         return letter;
     }
 
-    public void addNewLetter(){
-
+    @Override
+    public NodeType getNodeType() {
+        return NodeType.LETTERNODE;
     }
 }
