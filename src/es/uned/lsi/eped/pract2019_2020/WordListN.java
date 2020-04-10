@@ -5,11 +5,17 @@ public class WordListN {
 	...
 	/* Atributos de la clase con la estructura adecuada */
 
-	public WordListN(int size) {...}
+	public WordListN(int size) {
+
+	}
 	
-	public void add(String word) {...}
+	public void add(String word) {
+
+	}
 	
-	public int getWordSize() {...}
+	public int getWordSize() {
+
+	}
 	
 	public String toString() {
 		StringBuilder salida = new StringBuilder();
