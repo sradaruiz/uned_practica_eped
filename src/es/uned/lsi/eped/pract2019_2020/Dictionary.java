@@ -8,7 +8,9 @@ public class Dictionary {
     private GTree<Node> dict; /* El diccionario es un árbol general de nodos */
 
     /* Constructor de la clase */
-    public Dictionary() {...}
+    public Dictionary() {
+
+    }
 
     /* Método de inserción de una nueva palabra en el diccionario */
     public void insert(String word) {
@@ -17,7 +19,9 @@ public class Dictionary {
     }
 
     /* Método privado llamado por el anterior */
-    private void insertInTree(String word, GTreeIF<Node> node) {...}
+    private void insertInTree(String word, GTreeIF<Node> node) {
+        
+    }
 
     /* Método público de búsqueda de todas las palabras a partir de una secuencia */
     public WordList search(String sequence) {
@@ -27,8 +31,9 @@ public class Dictionary {
     }
 
     /* Método privado llamado por el anterior */
-    private void searchInTree(String sequence, String word,
-                              GTreeIF<Node> node, WordList salida) {...}
+    private void searchInTree(String sequence, String word, GTreeIF<Node> node, WordList salida) {
+
+    }
 
     /* Método público de búsqueda de todas las palabras de tamaño size a partir de una secuencia */
     public WordListN search(String sequence, int size) {
@@ -38,8 +43,8 @@ public class Dictionary {
     }
 
     /* Método privado llamado por el anterior */
-    private void searchInTreeN(String sequence, String word,
-                               GTreeIF<Node> node, WordListN salida,
-                               int size) {...}
+    private void searchInTreeN(String sequence, String word, GTreeIF<Node> node, WordListN salida, int size) {
+
+    }
 
 }
