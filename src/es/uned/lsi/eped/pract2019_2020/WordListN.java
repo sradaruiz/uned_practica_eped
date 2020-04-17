@@ -18,6 +18,7 @@ public class WordListN {
     }
 
     private BTreeIF<String> addChild(BTreeIF<String> child, String word) {
+        // TODO: controlar la insercion de duplicados
         if (child == null) {
             BTreeIF<String> newChild = new BTree<String>();
             newChild.setRoot(word);
@@ -27,12 +28,29 @@ public class WordListN {
         if (wordCompare < 0) {
             String oldRoot = child.getRoot();
             child.setRoot(word);
-            child.setLeftChild(addChild(child.getLeftChild(), oldRoot));
-        } else if (wordCompare > 0) {
-            if (word.compareToIgnoreCase(child.getLeftChild().getRoot()) < 0) {
-                child.setLeftChild(addChild(child.getLeftChild(), word));
+            if (child.getLeftChild() == null) {
+                child.setLeftChild(addChild(child.getLeftChild(), oldRoot));
+            } else if (oldRoot.compareToIgnoreCase(child.getLeftChild().getRoot()) < 0) {
+                String leftChildRoot = child.getLeftChild().getRoot();
+                child.setLeftChild(addChild(child.getLeftChild(), oldRoot));
+                child.setRightChild(addChild(child.getRightChild(), leftChildRoot));
+            } else if (oldRoot.compareToIgnoreCase(child.getLeftChild().getRoot()) > 0) {
+                child.setRightChild(addChild(child.getRightChild(), oldRoot));
             } else {
+                return child;
+            }
+//            child.setLeftChild(addChild(child.getLeftChild(), oldRoot));
+        } else if (wordCompare > 0) {
+            if (child.getLeftChild() == null) {
+                child.setLeftChild(addChild(child.getLeftChild(), word));
+            } else if (word.compareToIgnoreCase(child.getLeftChild().getRoot()) < 0) {
+                String leftChildRoot = child.getLeftChild().getRoot();
+                child.setLeftChild(addChild(child.getLeftChild(), word));
+                child.setRightChild(addChild(child.getRightChild(), leftChildRoot));
+            } else if (word.compareToIgnoreCase(child.getLeftChild().getRoot()) > 0) {
                 child.setRightChild(addChild(child.getRightChild(), word));
+            } else {
+                return child;
             }
         } else {
             return child;
