@@ -45,7 +45,7 @@ public class WordListN {
 
     public String toString() {
         StringBuilder salida = new StringBuilder();
-        int numPalabras = words.size(); /*Longitud de la secuencia de palabras */
+//        int numPalabras = words.size(); /*Longitud de la secuencia de palabras */
         salida.append("-Palabras de ");
         salida.append(this.getWordSize());
         salida.append(" letra");
