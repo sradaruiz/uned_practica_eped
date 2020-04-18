@@ -1,9 +1,19 @@
 package es.uned.lsi.eped.pract2019_2020;
 
+import es.uned.lsi.eped.DataStructures.List;
+import es.uned.lsi.eped.DataStructures.ListIF;
+
 public class WordListTest {
     public static void main(String[] args) {
         System.out.println("Pruebas sobre las WordList \n");
+
         WordList wordList = new WordList();
+        wordList.add("casa");
+        wordList.add("mano");
+        wordList.add("cabaña");
+        wordList.add("al");
+
+        System.out.println(wordList.toString());
     }
 }
 
