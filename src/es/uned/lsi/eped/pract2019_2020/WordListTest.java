@@ -8,10 +8,17 @@ public class WordListTest {
         System.out.println("Pruebas sobre las WordList \n");
 
         WordList wordList = new WordList();
+        wordList.add("a");
         wordList.add("casa");
         wordList.add("mano");
+        wordList.add("un");
+        wordList.add("eped");
         wordList.add("cabar");
+        wordList.add("alba");
+        wordList.add("b");
+        wordList.add("recursivo");
         wordList.add("al");
+        wordList.add("alborotos");
 
         System.out.println(wordList.toString());
     }
