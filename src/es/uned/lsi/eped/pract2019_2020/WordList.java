@@ -27,7 +27,7 @@ public class WordList {
             } else if (wordList.get(wordListNPosition).getWordSize() == wordLength) {
                 wordList.get(wordListNPosition).add(word);
             } else {
-                moveElements(wordListNPosition, wordList.size() - 1);
+                moveElements(wordListNPosition, wordList.size());
                 WordListN newWordListN = new WordListN(wordLength);
                 newWordListN.add(word);
                 wordList.set(wordListNPosition, newWordListN);
