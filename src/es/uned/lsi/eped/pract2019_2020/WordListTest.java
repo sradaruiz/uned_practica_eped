@@ -10,7 +10,7 @@ public class WordListTest {
         WordList wordList = new WordList();
         wordList.add("casa");
         wordList.add("mano");
-        wordList.add("cabaña");
+        wordList.add("cabar");
         wordList.add("al");
 
         System.out.println(wordList.toString());
