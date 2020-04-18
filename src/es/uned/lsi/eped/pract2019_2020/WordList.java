@@ -53,10 +53,6 @@ public class WordList {
         return wordListNPosition;
     }
 
-    private void moveElements() {
-
-    }
-
     public String toString() {
         StringBuilder salida = new StringBuilder();
         for (int pos = 1; pos <= this.wordList.size(); pos++) {
