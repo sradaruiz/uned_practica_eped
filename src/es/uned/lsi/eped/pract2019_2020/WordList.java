@@ -18,22 +18,39 @@ public class WordList {
             firstWordListN.add(word);
             wordList.insert(1, firstWordListN);
         } else {
-            int wordListNPosition = 0;
-            for (int pos = 1; pos <= wordList.size(); pos++) {
-                if (wordLength == wordList.get(pos).getWordSize()) {
-                    wordListNPosition = pos;
-                }
-            }
-            if (wordListNPosition == 0) {
+            int wordListNPosition = getPosition(wordList, wordLength);
+
+            if (wordListNPosition > wordList.size()) {
                 WordListN newWordListN = new WordListN(wordLength);
                 newWordListN.add(word);
                 wordList.insert(wordList.size() + 1, newWordListN);
+            } else if (wordList.get(wordListNPosition).getWordSize() == wordLength) {
+                wordList.get(wordListNPosition).add(word);
             } else {
-                WordListN wordListN = wordList.get(wordListNPosition);
-                wordListN.add(word);
-                wordList.set(wordListNPosition, wordListN);
+                moveElements(wordListNPosition, wordList.size() - 1);
+                WordListN newWordListN = new WordListN(wordLength);
+                newWordListN.add(word);
+                wordList.set(wordListNPosition, newWordListN);
             }
         }
+    }
+
+    private void moveElements(int index, int current) {
+        if (current >= index) {
+            wordList.insert(current + 1, wordList.get(current));
+            moveElements(index, current - 1);
+        }
+    }
+
+    private int getPosition(ListIF<WordListN> wordList, int wordLength) {
+        int wordListNPosition = 1;
+        for (int pos = 1; pos <= wordList.size(); pos++) {
+            if (wordLength <= wordList.get(pos).getWordSize()) {
+                return pos;
+            }
+            wordListNPosition++;
+        }
+        return wordListNPosition;
     }
 
     public String toString() {
