@@ -5,7 +5,6 @@ import es.uned.lsi.eped.DataStructures.ListIF;
 
 public class WordList {
     private ListIF<WordListN> wordList;
-    // TODO: la inserción tiene que ser ordenada
 
     public WordList() {
         this.wordList = new List<WordListN>();

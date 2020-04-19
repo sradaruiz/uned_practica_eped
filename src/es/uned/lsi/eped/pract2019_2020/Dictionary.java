@@ -9,7 +9,8 @@ public class Dictionary {
 
     /* Constructor de la clase */
     public Dictionary() {
-
+        dict = new GTree<Node>();
+        dict.setRoot(new RootNode());
     }
 
     /* Método de inserción de una nueva palabra en el diccionario */
