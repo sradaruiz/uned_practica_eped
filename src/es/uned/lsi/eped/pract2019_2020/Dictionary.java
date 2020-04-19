@@ -17,11 +17,12 @@ public class Dictionary {
     public void insert(String word) {
         /* Insertamos la palabra a partir del nodo raíz del árbol */
         insertInTree(word, this.dict);
+
     }
 
     /* Método privado llamado por el anterior */
     private void insertInTree(String word, GTreeIF<Node> node) {
-        
+
     }
 
     /* Método público de búsqueda de todas las palabras a partir de una secuencia */

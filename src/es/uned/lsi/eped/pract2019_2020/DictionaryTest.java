@@ -1,12 +1,33 @@
 package es.uned.lsi.eped.pract2019_2020;
 
+import es.uned.lsi.eped.DataStructures.GTree;
+import es.uned.lsi.eped.DataStructures.GTreeIF;
+
 public class DictionaryTest {
     public static void main(String[] args) {
-        String s = "test";
+        Dictionary dictionary = new Dictionary();
 
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            System.out.println(c);
-        }
+        dictionary.insert("hey");
+        dictionary.insert("hola");
+        dictionary.insert("adios");
+        dictionary.insert("buenas");
+    }
+}
+
+class GTreeTest {
+    public static void main(String[] args) {
+        GTree<Node> dict = new GTree<Node>();
+        dict.setRoot(new RootNode());
+
+        System.out.println(dict.isEmpty());
+        GTree<Node> letterNode = new GTree<>();
+        GTree<Node> otherLetterNode = new GTree<>();
+        letterNode.setRoot(new LetterNode('a'));
+        otherLetterNode.setRoot(new LetterNode('b'));
+        dict.addChild(1, letterNode);
+        dict.addChild(1, otherLetterNode);
+        GTreeIF<Node> child = dict.getChild(2);
+
+        System.out.println(dict.getChildren().contains(otherLetterNode));
     }
 }
