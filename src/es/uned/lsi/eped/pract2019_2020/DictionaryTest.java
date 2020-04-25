@@ -7,10 +7,8 @@ public class DictionaryTest {
     public static void main(String[] args) {
         Dictionary dictionary = new Dictionary();
 
-        dictionary.insert("hey");
-        dictionary.insert("hola");
-        dictionary.insert("adios");
-        dictionary.insert("buenas");
+        dictionary.insert("sara");
+        dictionary.insert("sapo");
     }
 }
 
@@ -27,7 +25,7 @@ class GTreeTest {
         dict.addChild(1, letterNode);
         dict.addChild(1, otherLetterNode);
         GTreeIF<Node> child = dict.getChild(2);
-
+        System.out.println(child.getRoot().getNodeType());
         System.out.println(dict.getChildren().contains(otherLetterNode));
     }
 }

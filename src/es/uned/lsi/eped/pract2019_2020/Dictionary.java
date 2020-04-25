@@ -2,6 +2,7 @@ package es.uned.lsi.eped.pract2019_2020;
 
 import es.uned.lsi.eped.DataStructures.GTree;
 import es.uned.lsi.eped.DataStructures.GTreeIF;
+import es.uned.lsi.eped.DataStructures.ListIF;
 
 public class Dictionary {
 
@@ -22,7 +23,39 @@ public class Dictionary {
 
     /* Método privado llamado por el anterior */
     private void insertInTree(String word, GTreeIF<Node> node) {
+        if (dict.isEmpty()) {
+            dict = new GTree<Node>();
+            dict.setRoot(new RootNode());
+        }
+        while (word.length() != 0) {
+            // TODO: corregir recursion
+            char letter = word.charAt(0);
+            word = word.substring(1);
 
+            GTreeIF<Node> newNode = new GTree<>();
+            newNode.setRoot(new LetterNode(letter));
+            int position = getChildPosition(node.getChildren(), newNode);
+            if (position == -1) {
+                node.addChild(1, newNode);
+                insertInTree(word, newNode);
+            } else {
+                GTreeIF<Node> retrievedNode = node.getChild(position);
+                insertInTree(word, retrievedNode);
+            }
+        }
+    }
+
+    private int getChildPosition(ListIF<GTreeIF<Node>> children, GTreeIF<Node> child) {
+        if (children.contains(child)) {
+            for (int i = 1; i <= children.size(); i++) {
+                if (children.get(i).equals(child)) {
+                    return i;
+                }
+            }
+        } else {
+            return -1;
+        }
+        return -1;
     }
 
     /* Método público de búsqueda de todas las palabras a partir de una secuencia */
