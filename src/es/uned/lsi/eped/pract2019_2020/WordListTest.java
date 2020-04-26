@@ -61,6 +61,12 @@ public class WordListTest {
         wordList.add("cocoso");
         wordList.add("cosaco");
         wordList.add("coscas");
+        wordList.add("ascoso");
+        wordList.add("casaca");
+        wordList.add("cascas");
+        wordList.add("cocoso");
+        wordList.add("cosaco");
+        wordList.add("coscas");
 
         System.out.println(wordList.toString());
     }
