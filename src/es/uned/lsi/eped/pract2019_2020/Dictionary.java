@@ -133,8 +133,34 @@ public class Dictionary {
 
     /* Método privado llamado por el anterior */
     private void searchInTreeN(String sequence, String word, GTreeIF<Node> node, WordListN salida, int size) {
+        sequence = getUniqueString(sequence);
+        for (int pos = 0; pos < sequence.length(); pos++) {
+            if (node.getRoot().getNodeType() != Node.NodeType.WORDNODE) {
+                char letter = sequence.charAt(pos);
 
+                ListIF<GTreeIF<Node>> children = node.getChildren();
+                for (int i = 1; i <= node.getNumChildren(); i++) {
+                    GTreeIF<Node> childNode = children.get(i);
+                    if (childNode.getRoot().getNodeType() == Node.NodeType.LETTERNODE) {
+                        LetterNode retrievedLetter = (LetterNode) childNode.getRoot();
+                        if (retrievedLetter.getLetter() == letter) {
+                            searchInTreeN(sequence, word + letter, childNode, salida, size);
+                        }
+                    } else if (childNode.getRoot().getNodeType() == Node.NodeType.WORDNODE) {
+                        if (word.length() == size) {
+                            salida.add(word);
+                        }
+                    }
+                }
+                searchInTreeN(sequence.substring(1), word, node, salida, size);
+            } else if (node.getRoot().getNodeType() == Node.NodeType.WORDNODE) {
+                if (word.length() == size) {
+                    salida.add(word);
+                }
+            }
+        }
     }
+
     private static String getUniqueString(String sequence) {
         ListIF<Character> characters = new List<Character>();
         String uniqueString = "";

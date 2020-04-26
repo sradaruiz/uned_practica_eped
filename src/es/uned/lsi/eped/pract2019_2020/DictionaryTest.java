@@ -16,7 +16,10 @@ public class DictionaryTest {
         dictionary.insert("a");
         dictionary.insert("pama");
         WordList wordList = dictionary.search("ampa");
+        WordListN wordListN = dictionary.search("ampa", 4);
         System.out.println(wordList.toString());
+        System.out.println("----------------------------------------------------------");
+        System.out.println(wordListN.toString());
     }
 }
 
