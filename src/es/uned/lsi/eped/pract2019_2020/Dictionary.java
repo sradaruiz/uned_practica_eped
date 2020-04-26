@@ -5,6 +5,8 @@ import es.uned.lsi.eped.DataStructures.GTreeIF;
 import es.uned.lsi.eped.DataStructures.List;
 import es.uned.lsi.eped.DataStructures.ListIF;
 
+import javax.management.NotificationEmitter;
+
 public class Dictionary {
 
     private GTree<Node> dict; /* El diccionario es un árbol general de nodos */
@@ -75,10 +77,53 @@ public class Dictionary {
     }
 
     /* Método privado llamado por el anterior */
+//    private void searchInTree(String sequence, String word, GTreeIF<Node> node, WordList salida) {
+//        if (node.getRoot().getNodeType() != Node.NodeType.WORDNODE) {
+//            char letter = sequence.charAt(0);
+//
+//            ListIF<GTreeIF<Node>> children = node.getChildren();
+//            for (int i = 1; i <= node.getNumChildren(); i++) {
+//                GTreeIF<Node> newNode = children.get(i);
+//                if (newNode.getRoot().getNodeType() == Node.NodeType.LETTERNODE) {
+//                    LetterNode retrievedLetter = (LetterNode) newNode.getRoot();
+//                    if (retrievedLetter.getLetter() == letter) {
+//                        searchInTree(sequence, word + letter, newNode, salida);
+//                    }
+//                } else if (newNode.getRoot().getNodeType() == Node.NodeType.WORDNODE) {
+//                    salida.add(word);
+//                    searchInTree(sequence.substring(1), word + letter, newNode, salida);
+//                }
+//            }
+//        } else {
+//            salida.add(word);
+//        }
+//    }
     private void searchInTree(String sequence, String word, GTreeIF<Node> node, WordList salida) {
+        sequence = getUniqueString(sequence);
+        for (int pos = 0; pos < sequence.length(); pos++) {
+            if (node.getRoot().getNodeType() != Node.NodeType.WORDNODE) {
+                char letter = sequence.charAt(pos);
 
+                ListIF<GTreeIF<Node>> children = node.getChildren();
+                for (int i = 1; i <= node.getNumChildren(); i++) {
+                    GTreeIF<Node> childNode = children.get(i);
+                    if (childNode.getRoot().getNodeType() == Node.NodeType.LETTERNODE) {
+                        LetterNode retrievedLetter = (LetterNode) childNode.getRoot();
+                        if (retrievedLetter.getLetter() == letter) {
+                            searchInTree(sequence, word + letter, childNode, salida);
+                        }
+                    } else if (childNode.getRoot().getNodeType() == Node.NodeType.WORDNODE) {
+                        salida.add(word);
+                    }
+                }
+                searchInTree(sequence.substring(1), word, node, salida);
+            } else if (node.getRoot().getNodeType() == Node.NodeType.WORDNODE) {
+                salida.add(word);
+            }
+        }
     }
-    
+
+
     /* Método público de búsqueda de todas las palabras de tamaño size a partir de una secuencia */
     public WordListN search(String sequence, int size) {
         WordListN salida = new WordListN(size);           /* Variable donde construiremos la salida */
@@ -90,37 +135,16 @@ public class Dictionary {
     private void searchInTreeN(String sequence, String word, GTreeIF<Node> node, WordListN salida, int size) {
 
     }
-
-    public static ListIF<String> permutation(String str) {
-        ListIF<String> wordList = new List<String>();
-        for (int i = 0; i < str.length(); i++) {
-            wordList = permutationN(wordList, "", str, i);
-        }
-        return wordList;
-    }
-
-    public static ListIF<String> permutation(String str, int wordSize) {
-        ListIF<String> wordList = new List<String>();
-        wordList = permutationN(wordList, "", str, wordSize);
-        return wordList;
-    }
-
-    private static ListIF<String> permutationN(ListIF<String> wordList, String prefix, String word, int wordSize) {
-        if (wordList == null) {
-            return new List<String>();
-        }
-        int n = word.length();
-        if (prefix.length() == wordSize && !wordList.contains(prefix)) {
-            wordList.insert(1, prefix);
-            return wordList;
-        } else {
-            for (int i = 0; i < n; i++) {
-                String newPrefix = prefix + word.charAt(i);
-                String newWord = word.substring(0, i) + word.substring(i + 1, n);
-                permutationN(wordList, newPrefix, newWord, wordSize);
+    private static String getUniqueString(String sequence) {
+        ListIF<Character> characters = new List<Character>();
+        String uniqueString = "";
+        for (int i = 0; i < sequence.length(); i++) {
+            char sequenceChar = sequence.charAt(i);
+            if (!characters.contains(sequenceChar)) {
+                characters.insert(1, sequenceChar);
+                uniqueString += sequenceChar;
             }
         }
-        return wordList;
+        return uniqueString;
     }
-
 }
