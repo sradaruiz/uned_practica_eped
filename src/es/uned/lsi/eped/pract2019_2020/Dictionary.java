@@ -49,10 +49,15 @@ public class Dictionary {
     }
 
     private int getChildPosition(ListIF<GTreeIF<Node>> children, GTreeIF<Node> child) {
-        if (children.contains(child)) {
+        if (child.getRoot().getNodeType() == Node.NodeType.LETTERNODE) {
             for (int i = 1; i <= children.size(); i++) {
-                if (children.get(i).equals(child)) {
-                    return i;
+                GTreeIF<Node> retrievedChildren = children.get(i);
+                if (retrievedChildren.getRoot().getNodeType() == Node.NodeType.LETTERNODE) {
+                    LetterNode retrievedLetter = (LetterNode) retrievedChildren.getRoot();
+                    LetterNode childLetter = (LetterNode) child.getRoot();
+                    if (retrievedLetter.getLetter() == childLetter.getLetter()) {
+                        return i;
+                    }
                 }
             }
         } else {

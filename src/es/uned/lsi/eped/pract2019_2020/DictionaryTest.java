@@ -9,6 +9,7 @@ public class DictionaryTest {
 
         dictionary.insert("sara");
         dictionary.insert("sapo");
+        dictionary.insert("mapa");
     }
 }
 
@@ -19,13 +20,17 @@ class GTreeTest {
 
         System.out.println(dict.isEmpty());
         GTree<Node> letterNode = new GTree<>();
-        GTree<Node> otherLetterNode = new GTree<>();
         letterNode.setRoot(new LetterNode('a'));
+
+        GTree<Node> otherLetterNode = new GTree<>();
         otherLetterNode.setRoot(new LetterNode('b'));
+
         dict.addChild(1, letterNode);
         dict.addChild(1, otherLetterNode);
         GTreeIF<Node> child = dict.getChild(2);
-        System.out.println(child.getRoot().getNodeType());
-        System.out.println(dict.getChildren().contains(otherLetterNode));
+
+        GTree<Node> containsNode = new GTree<>();
+        containsNode.setRoot(new LetterNode('b'));
+        System.out.println(dict.getChildren().contains(containsNode));
     }
 }
