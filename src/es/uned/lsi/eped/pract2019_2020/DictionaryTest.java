@@ -2,14 +2,19 @@ package es.uned.lsi.eped.pract2019_2020;
 
 import es.uned.lsi.eped.DataStructures.GTree;
 import es.uned.lsi.eped.DataStructures.GTreeIF;
+import es.uned.lsi.eped.DataStructures.ListIF;
 
 public class DictionaryTest {
     public static void main(String[] args) {
         Dictionary dictionary = new Dictionary();
-
-        dictionary.insert("sara");
-        dictionary.insert("sapo");
-        dictionary.insert("mapa");
+        ListIF<String> wordList = Dictionary.permutation("ocaso", 5);
+        for (int i = 1; i <= wordList.size(); i++) {
+            System.out.println(wordList.get(i));
+        }
+        System.out.println(wordList.size());
+//        dictionary.insert("sara");
+//        dictionary.insert("sapo");
+//        dictionary.insert("mapa");
     }
 }
 

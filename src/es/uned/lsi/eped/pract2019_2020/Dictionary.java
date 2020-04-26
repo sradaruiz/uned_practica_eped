@@ -2,6 +2,7 @@ package es.uned.lsi.eped.pract2019_2020;
 
 import es.uned.lsi.eped.DataStructures.GTree;
 import es.uned.lsi.eped.DataStructures.GTreeIF;
+import es.uned.lsi.eped.DataStructures.List;
 import es.uned.lsi.eped.DataStructures.ListIF;
 
 public class Dictionary {
@@ -77,7 +78,7 @@ public class Dictionary {
     private void searchInTree(String sequence, String word, GTreeIF<Node> node, WordList salida) {
 
     }
-
+    
     /* Método público de búsqueda de todas las palabras de tamaño size a partir de una secuencia */
     public WordListN search(String sequence, int size) {
         WordListN salida = new WordListN(size);           /* Variable donde construiremos la salida */
@@ -88,6 +89,38 @@ public class Dictionary {
     /* Método privado llamado por el anterior */
     private void searchInTreeN(String sequence, String word, GTreeIF<Node> node, WordListN salida, int size) {
 
+    }
+
+    public static ListIF<String> permutation(String str) {
+        ListIF<String> wordList = new List<String>();
+        for (int i = 0; i < str.length(); i++) {
+            wordList = permutationN(wordList, "", str, i);
+        }
+        return wordList;
+    }
+
+    public static ListIF<String> permutation(String str, int wordSize) {
+        ListIF<String> wordList = new List<String>();
+        wordList = permutationN(wordList, "", str, wordSize);
+        return wordList;
+    }
+
+    private static ListIF<String> permutationN(ListIF<String> wordList, String prefix, String word, int wordSize) {
+        if (wordList == null) {
+            return new List<String>();
+        }
+        int n = word.length();
+        if (prefix.length() == wordSize && !wordList.contains(prefix)) {
+            wordList.insert(1, prefix);
+            return wordList;
+        } else {
+            for (int i = 0; i < n; i++) {
+                String newPrefix = prefix + word.charAt(i);
+                String newWord = word.substring(0, i) + word.substring(i + 1, n);
+                permutationN(wordList, newPrefix, newWord, wordSize);
+            }
+        }
+        return wordList;
     }
 
 }
