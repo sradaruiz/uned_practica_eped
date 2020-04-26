@@ -27,8 +27,7 @@ public class Dictionary {
             dict = new GTree<Node>();
             dict.setRoot(new RootNode());
         }
-        while (word.length() != 0) {
-            // TODO: corregir recursion
+        if (word.length() != 0) {
             char letter = word.charAt(0);
             word = word.substring(1);
 
@@ -42,6 +41,10 @@ public class Dictionary {
                 GTreeIF<Node> retrievedNode = node.getChild(position);
                 insertInTree(word, retrievedNode);
             }
+        } else {
+            GTreeIF<Node> finalNode = new GTree<>();
+            finalNode.setRoot(new WordNode());
+            node.addChild(1, finalNode);
         }
     }
 
